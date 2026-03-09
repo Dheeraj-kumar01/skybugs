@@ -1,0 +1,94 @@
+<% layout("layout/boilerplate") %>
+<body>
+  <div class="row">
+    <div class="col-8 offset-2">
+        <br/>
+        <br/>
+      <h3>Create New Listing...</h3>
+      <form class="needs-validation" method="post" action="/index" novalidate enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title: </label>
+          <input name="title" class="form-control" placeholder="Enter Title" required/>
+          <div class="invalid-feedback">
+               Please Give Vailed Title.
+          </div>
+          <div class="valid-feedback">
+              Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="descripstion" class="form-label">Descrpstioin </label>
+          <textarea
+            required
+            name="description"
+            class="form-control"
+            placeholder="Enter Descripstion"
+          ></textarea>
+          <div class="invalid-feedback">
+               Please Give Vailed Descripstion.
+          </div>
+          <div class="valid-feedback">
+              Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Image: </label>
+          <input
+            name="image[url]"
+            class="form-control"
+            type="file"
+          />
+        </div>
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price: </label>
+            <input
+              type="number"
+              class="form-control"
+              name="price"
+              placeholder="Enter Price"
+              required
+            />
+            <div class="invalid-feedback">
+               Please Give apropiate Price.
+            </div>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country: </label>
+            <input
+              name="country"
+              class="form-control"
+              placeholder="Enter Country"
+              required
+            />
+            <div class="invalid-feedback">
+               Please Give Vailed Country name.
+            </div>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="location" class="form-label">Location: </label>
+          <input
+            name="location"
+            class="form-control"
+            placeholder="Enter Location"
+            required
+          />
+          <div class="invalid-feedback">
+               Please Give Correct Location.
+          </div>
+          <div class="valid-feedback">
+              Looks good!
+          </div>
+        </div>
+        <button class="btn btn-dark">Post</button>
+      </form>
+    </div>
+  </div>
+</body>
