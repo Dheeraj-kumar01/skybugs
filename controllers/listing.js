@@ -1,4 +1,48 @@
 const Listing = require("../models/listing");
+const axios = require("axios");
+//const axios = require('axios'); // legacy way
+
+
+
+async function getCoordinates(location) {
+  try {
+
+    const response = await axios.get(
+      "https://nominatim.openstreetmap.org/search",
+      {
+        params: {
+          q: location,
+          format: "json",
+          limit: 1
+        },
+        headers: {
+          "User-Agent": "skybug-app"
+        }
+      }
+    );
+
+    if(response.data.length === 0){
+      throw new Error("Location not found");
+    }
+
+    const data = response.data[0];
+
+    return {
+      lat: data.lat,
+      lon: data.lon
+    };
+
+  } catch (error) {
+    console.error("Geocoding Error:", error.message);
+    return null;
+  }
+}
+
+
+
+
+
+
 
 module.exports.update = async (req, res, next) => {
   try {
@@ -53,6 +97,11 @@ module.exports.createListing = async (req, res, next) => {
     let newListing = req.body;
     newListing.owner = req.user._id;
     newListing.image = { filename, url };
+    let coords = await getCoordinates(req.body.location);
+    let cucu = newListing.geometry = {
+      type: "Point",
+      coordinates: [coords.lon, coords.lat]
+    }
     req.flash("success", "Successfully created a new listing");
     await Listing.insertOne(newListing);
     res.redirect("/index");

@@ -1,5 +1,10 @@
 <% layout("layout/boilerplate") %>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+     
+
 <div class="row show-container">
   <div class="col-8 show-container2">
     <h2 class="heading col-8 mt-3"><%= list.title %></h2>
@@ -56,8 +61,9 @@
 </div>
 <hr>
 <div class="review col-8">
-  <h2>Reviews</h2>
+  <% if(list.reviews.length > 0) {%>
   <div class="row">
+    <h2>Reviews</h2>
       <% list.reviews.forEach(review => { %>
     <div class="card col-5 m-2">
       <div class="card-body">
@@ -73,6 +79,12 @@
     </div>
     <% }); %>
   </div>
+  <% } %>
+     <div id="map" class="col-6 mb-4"></div>
 </div>
-  </div>
 </div>
+</div>
+<script>
+const coordinates = <%- JSON.stringify(list.geometry.coordinates) %>
+</script>
+<script src="../js/map.js"></script>
