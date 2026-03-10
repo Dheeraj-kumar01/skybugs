@@ -115,6 +115,11 @@ module.exports.editListing = async (req, res, next) => {
     let { id } = req.params;
     let updateData = req.body;
     let url, filename;
+    let coords = await getCoordinates(req.body.location);
+    updateData.geometry = {
+      type: "Point",
+      coordinates: [coords.lon, coords.lat]
+    }
     let listing = await Listing.findByIdAndUpdate(id, updateData, {
       new: true,
     });
