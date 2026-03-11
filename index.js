@@ -2,8 +2,6 @@ if(process.env.NODE_ENV != "production"){
   require('dotenv').config()
 }
 
-
-
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
@@ -32,7 +30,7 @@ app.engine("ejs", ejsMate);
 app.use(express.static("public"));
 app.use(
   session({
-    secret: "secretcode",
+    secret: process.env.secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
