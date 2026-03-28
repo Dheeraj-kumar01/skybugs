@@ -78,7 +78,7 @@ node index
 ![Listing](./assets/list-page.png)
 ![Map View](./assets/map-page.png)
 ![Comment section](./assets/comment-sections.png)
-![SignUp page](./assets/signUp-page.png)
+![SignUp page](./assets/sigUp-page.png)
 ![Log In page](./assets/login-page.png)
 
 ---
